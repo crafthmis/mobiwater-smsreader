@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.techbridge.smsreader">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="25.3.1" />
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/launcher_image"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service android:name="com.techbridge.smsreader.utils.BackgroundService" />
+
+        <receiver
+            android:name="com.techbridge.smsreader.utils.SmsReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.techbridge.smsreader.utils.AlarmReceiver" />
+        <receiver android:name="com.techbridge.smsreader.utils.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.techbridge.smsreader.views.activities.DashboardActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.techbridge.smsreader.views.activities.TabActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.SettingActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.AddsettingActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.AddReminderActivity"/>
+        <activity android:name="com.techbridge.smsreader.views.activities.MainActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.EditsettingActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.EditReminderActivity"/>
+        <activity android:name="com.techbridge.smsreader.views.activities.GraphActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.SynctimeActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.CtrldashboardActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.CtrlsettingsActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.DailyreportActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.SetnumbersActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.HistoricaldataActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.BaseActivity" />
+        <activity android:name="com.techbridge.smsreader.views.activities.AlarmActivity" />
+    </application>
+</manifest>

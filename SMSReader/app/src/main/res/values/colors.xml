@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cardview_dark_background">#ff424242</color>
+    <color name="cardview_light_background">#ffffffff</color>
+    <color name="cardview_shadow_end_color">#03000000</color>
+    <color name="cardview_shadow_start_color">#37000000</color>
+    <color name="colorAccent">#ff404d</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDarkGrey">#bbc0c4</color>
+    <color name="colorGrey">#e0e2e4</color>
+    <color name="colorPrimary">#7e57c2</color>
+    <color name="colorPrimaryDark">#673ab7</color>
+    <color name="colorPrimaryLight">#bbdefb</color>
+    <color name="colorRed">#fe0000</color>
+    <color name="colorSwipebg">#cc3333</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="fab_pressed">#546e7a</color>
+    <color name="accent">@color/colorAccent</color>
+    <color name="toolbarPrimaryDark">#ff673ab7</color>
+    <color name="toolbarPrimaryLight">#ff7e57c2</color>
+</resources>

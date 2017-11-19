@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <include layout="@layout/app_bar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="9.0"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:gravity="right"
+            android:prompt="@string/spinner_title"
+            android:spinnerMode="dialog" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/linechart"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_margin="5.0dip"
+            android:layout_weight="7.0"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/prev_btn"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_margin="3.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/rounded_border_dark"
+                android:text="@string/prev_button" />
+
+            <TextView
+                android:id="@+id/graph_text"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_weight="2.0"
+                android:text="Today" />
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="0.0dip"
+                android:layout_height="fill_parent"
+                android:layout_margin="3.0dip"
+                android:layout_weight="1.0"
+                android:background="@drawable/rounded_border_dark"
+                android:text="@string/next_button" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

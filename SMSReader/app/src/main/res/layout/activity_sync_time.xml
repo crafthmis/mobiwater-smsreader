@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aigestudio="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <include layout="@layout/app_bar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24.0dip"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="60.0dip"
+                android:layout_height="20.0dip"
+                android:text="Year"
+                android:textColor="@color/colorBlack"
+                android:textSize="9.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="65.0dip"
+                android:layout_height="20.0dip"
+                android:text="Month"
+                android:textColor="@color/colorBlack"
+                android:textSize="9.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt3"
+                android:layout_width="45.0dip"
+                android:layout_height="20.0dip"
+                android:text="Day"
+                android:textColor="@color/colorBlack"
+                android:textSize="9.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt4"
+                android:layout_width="45.0dip"
+                android:layout_height="20.0dip"
+                android:text="Hour"
+                android:textColor="@color/colorBlack"
+                android:textSize="9.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt5"
+                android:layout_width="45.0dip"
+                android:layout_height="20.0dip"
+                android:text="Minutes"
+                android:textColor="@color/colorBlack"
+                android:textSize="9.0sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt6"
+                android:layout_width="45.0dip"
+                android:layout_height="20.0dip"
+                android:text="Seconds"
+                android:textColor="@color/colorBlack"
+                android:textSize="9.0sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10.0dip"
+            android:orientation="horizontal">
+
+            <com.techbridge.smsreader.utils.wheelpicker.WheelView
+                android:id="@+id/p1"
+                android:layout_width="65.0dip"
+                android:layout_height="80.0dip" />
+
+            <com.techbridge.smsreader.utils.wheelpicker.WheelView
+                android:id="@+id/p2"
+                android:layout_width="60.0dip"
+                android:layout_height="80.0dip" />
+
+            <com.techbridge.smsreader.utils.wheelpicker.WheelView
+                android:id="@+id/p3"
+                android:layout_width="45.0dip"
+                android:layout_height="80.0dip" />
+
+            <com.techbridge.smsreader.utils.wheelpicker.WheelView
+                android:id="@+id/p4"
+                android:layout_width="45.0dip"
+                android:layout_height="80.0dip" />
+
+            <com.techbridge.smsreader.utils.wheelpicker.WheelView
+                android:id="@+id/p5"
+                android:layout_width="45.0dip"
+                android:layout_height="80.0dip" />
+
+            <com.techbridge.smsreader.utils.wheelpicker.WheelView
+                android:id="@+id/p6"
+                android:layout_width="45.0dip"
+                android:layout_height="80.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20.0dip"
+            android:orientation="horizontal">
+
+            <com.techbridge.smsreader.utils.wheelpicker.WheelView
+                android:id="@+id/p7"
+                android:layout_width="150.0dip"
+                android:layout_height="80.0dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24.0dip"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/r1"
+                android:layout_width="50.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="2.0dip"
+                android:layout_marginTop="24.0dip"
+                android:background="@drawable/rounded_border_dark"
+                android:textColor="#ff000000"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/r2"
+                android:layout_width="50.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24.0dip"
+                android:background="@drawable/rounded_border_dark"
+                android:textColor="#ff000000"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/r3"
+                android:layout_width="50.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginTop="24.0dip"
+                android:background="@drawable/rounded_border_dark"
+                android:textColor="#ff000000"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/r4"
+                android:layout_width="50.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginTop="24.0dip"
+                android:background="@drawable/rounded_border_dark"
+                android:textColor="#ff000000"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/r5"
+                android:layout_width="50.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginTop="24.0dip"
+                android:background="@drawable/rounded_border_dark"
+                android:textColor="#ff000000"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/r6"
+                android:layout_width="50.0dip"
+                android:layout_height="30.0dip"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginTop="24.0dip"
+                android:background="@drawable/rounded_border_dark"
+                android:textColor="#ff000000"
+                android:textSize="18.0sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24.0dip"
+            android:orientation="horizontal">
+
+            <at.markushi.ui.CircleButton
+                android:id="@+id/circleButton"
+                android:layout_width="64.0dip"
+                android:layout_height="64.0dip"
+                android:src="@drawable/ic_action_tick" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

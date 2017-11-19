@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorSwipebg"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:visibility="visible"
+    android:weightSum="3.0">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:text="@string/delete_label"
+        android:textColor="@android:color/white"
+        android:textSize="24.0sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/undo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2.0"
+        android:gravity="end"
+        android:paddingBottom="5.0dip"
+        android:paddingLeft="16.0dip"
+        android:paddingRight="16.0dip"
+        android:paddingTop="5.0dip"
+        android:text="@string/undo_label"
+        android:textColor="@android:color/white"
+        android:textSize="22.0sp"
+        android:textStyle="bold" />
+</LinearLayout>

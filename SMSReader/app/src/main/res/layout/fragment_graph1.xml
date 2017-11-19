@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:orientation="vertical" android:background="@color/colorGrey" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="9.0">
+            <Spinner android:gravity="right" android:id="@id/spinner" android:layout_width="fill_parent" android:layout_height="0.0dip" android:prompt="@string/spinner_title" android:layout_weight="1.0" android:spinnerMode="dialog" />
+            <LinearLayout android:orientation="vertical" android:id="@id/linechart" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="7.0" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
+                <Button android:id="@id/back_btn" android:background="@drawable/rounded_border_dark" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_margin="3.0dip" android:text="@string/back_button" android:layout_weight="1.0" />
+                <TextView android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="Today" android:layout_weight="2.0" />
+                <Button android:id="@id/next_btn" android:background="@drawable/rounded_border_dark" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_margin="3.0dip" android:text="@string/next_button" android:layout_weight="1.0" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
