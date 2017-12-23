@@ -8,8 +8,8 @@
     <color name="colorBlack">#000000</color>
     <color name="colorDarkGrey">#bbc0c4</color>
     <color name="colorGrey">#e0e2e4</color>
-    <color name="colorPrimary">#7e57c2</color>
-    <color name="colorPrimaryDark">#673ab7</color>
+    <color name="colorPrimary">#42A5F5</color>
+    <color name="colorPrimaryDark">#2196F3</color>
     <color name="colorPrimaryLight">#bbdefb</color>
     <color name="colorRed">#fe0000</color>
     <color name="colorSwipebg">#cc3333</color>
