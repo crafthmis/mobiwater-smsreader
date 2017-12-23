@@ -20,7 +20,7 @@ import com.techbridge.smsreader.db.DBHelper;
 import com.techbridge.smsreader.utils.SwipeUtil;
 import com.techbridge.smsreader.views.adapters.SettingAdapter;
 
-public class SettingActivity extends AppCompatActivity implements OnClickListener {
+public class SettingActivity extends BaseActivity implements OnClickListener {
     private Context context = this;
     private DBHelper dbhelper;
     private Toolbar mToolbar;

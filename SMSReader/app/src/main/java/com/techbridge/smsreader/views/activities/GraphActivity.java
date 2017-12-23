@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class GraphActivity extends AppCompatActivity implements OnClickListener {
+public class GraphActivity extends BaseActivity implements OnClickListener {
     private Button btnBack;
     private Button btnPrev;
     private Context context = this;

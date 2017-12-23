@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorGrey"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <include layout="@layout/app_bar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="8.0"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:gravity="right"
+            android:prompt="@string/spinner_title"
+            android:spinnerMode="dialog" />
+
+        <RelativeLayout
+            android:id="@+id/widget_view"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="6.0"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/percent100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_100"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent90"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_90"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent80"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_80"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent70"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_70"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_60"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_50"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_40"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_30"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_20"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/percent10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/lic_10"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/battery_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/battery" />
+
+            <TextView
+                android:id="@+id/batterytext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/battery_view"
+                android:layout_alignLeft="@+id/battery_view"
+                android:layout_alignRight="@+id/battery_view"
+                android:layout_alignTop="@+id/battery_view"
+                android:gravity="center"
+                android:maxLines="1"
+                android:shadowColor="@android:color/background_dark"
+                android:shadowDx="3.0"
+                android:shadowDy="3.0"
+                android:shadowRadius="4.0"
+                android:textColor="@android:color/white"
+                android:textSize="30.0sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+            <com.github.clans.fab.FloatingActionMenu
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="-22dp"
+                fab:menu_fab_size="normal"
+                fab:menu_showShadow="true"
+                fab:menu_shadowColor="#66000000"
+                fab:menu_shadowRadius="4dp"
+                fab:menu_shadowXOffset="1dp"
+                fab:menu_shadowYOffset="3dp"
+                fab:menu_colorNormal="#DA4336"
+                fab:menu_colorPressed="#E75043"
+                fab:menu_colorRipple="#99FFFFFF"
+                fab:menu_animationDelayPerItem="50"
+                fab:menu_icon="@drawable/fab_add"
+                fab:menu_buttonSpacing="0dp"
+                fab:menu_labels_margin="0dp"
+                fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+                fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+                fab:menu_labels_paddingTop="4dp"
+                fab:menu_labels_paddingRight="8dp"
+                fab:menu_labels_paddingBottom="4dp"
+                fab:menu_labels_paddingLeft="8dp"
+                fab:menu_labels_padding="8dp"
+                fab:menu_labels_textColor="#FFFFFF"
+                fab:menu_labels_textSize="14sp"
+                fab:menu_labels_cornerRadius="3dp"
+                fab:menu_labels_colorNormal="#333333"
+                fab:menu_labels_colorPressed="#444444"
+                fab:menu_labels_colorRipple="#66FFFFFF"
+                fab:menu_labels_showShadow="true"
+                fab:menu_labels_singleLine="false"
+                fab:menu_labels_ellipsize="none"
+                fab:menu_labels_maxLines="-1"
+                fab:menu_labels_position="left"
+                fab:menu_openDirection="up"
+                fab:menu_backgroundColor="@android:color/transparent"
+                fab:menu_fab_label="">
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/menu_item1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_star"
+                    fab:fab_size="mini"
+                    fab:fab_label="Tank Settings" />
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/menu_item2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_star"
+                    fab:fab_size="mini"
+                    fab:fab_label="Controller Settings" />
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/menu_item3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_star"
+                    fab:fab_size="mini"
+                    fab:fab_label="Alarm Settings" />
+
+            </com.github.clans.fab.FloatingActionMenu>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/meterreading"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:visibility="visible"
+            android:textColor="@color/colorBlack"
+            android:textSize="12.0dip" />
+    </LinearLayout>
+</LinearLayout>

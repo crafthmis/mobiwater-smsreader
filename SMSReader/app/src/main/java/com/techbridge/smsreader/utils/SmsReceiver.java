@@ -3,6 +3,7 @@ package com.techbridge.smsreader.utils;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -12,7 +13,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat.Builder;
-import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.app.NotificationCompat;
 import android.telephony.SmsMessage;
 import android.util.Log;
@@ -21,7 +21,7 @@ import com.techbridge.smsreader.db.DBHelper;
 import com.techbridge.smsreader.views.activities.DashboardActivity;
 import org.apache.commons.lang3.StringUtils;
 
-public class SmsReceiver extends WakefulBroadcastReceiver {
+public class SmsReceiver extends BroadcastReceiver {
     private int currentNotificationID = 0;
     private DBHelper dbhelper;
     private Builder notificationBuilder;

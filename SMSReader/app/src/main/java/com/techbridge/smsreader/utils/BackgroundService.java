@@ -18,13 +18,8 @@ public class BackgroundService extends Service {
         registerReceiver(receiver, filter);
     }
 
-    public void onDestroy() {
-        super.onDestroy();
-        stopSelf();
-    }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
-        return 1;
+        return super.onStartCommand(intent, flags, startId);
     }
 }

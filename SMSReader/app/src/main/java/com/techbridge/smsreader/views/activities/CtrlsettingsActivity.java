@@ -21,7 +21,7 @@ import com.techbridge.smsreader.utils.SwipeUtil;
 import com.techbridge.smsreader.views.adapters.CtrlsettingAdapter;
 import com.techbridge.smsreader.views.adapters.SettingAdapter;
 
-public class CtrlsettingsActivity extends AppCompatActivity implements OnClickListener {
+public class CtrlsettingsActivity extends BaseActivity implements OnClickListener {
     private Context context = CtrlsettingsActivity.this;
     private DBHelper dbhelper;
     private Toolbar mToolbar;

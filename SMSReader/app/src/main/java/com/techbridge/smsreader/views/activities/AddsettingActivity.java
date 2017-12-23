@@ -13,7 +13,7 @@ import com.techbridge.smsreader.R;
 import com.techbridge.smsreader.db.DBHelper;
 import com.techbridge.smsreader.utils.Utils;
 
-public class AddsettingActivity extends AppCompatActivity implements OnClickListener {
+public class AddsettingActivity extends BaseActivity implements OnClickListener {
     private Button btnSetting;
     private Context context = AddsettingActivity.this;
     private DBHelper dbhelper;

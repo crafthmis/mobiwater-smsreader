@@ -205,11 +205,12 @@ public class DBHelper extends SQLiteOpenHelper {
             if (cursor!=null)      {
                 do
                 {
-                    String meterReading = StringUtils.substringBefore(cursor.getString(cursor.getColumnIndexOrThrow("body")), ";").replaceAll("[^0-9.]", "");
+                    String sms = cursor.getString(cursor.getColumnIndexOrThrow("body"));
+                    String meterReading = StringUtils.substringBefore(sms , ";").replaceAll("[^0-9.]", "");
                     String strDate = cursor.getString(cursor.getColumnIndexOrThrow("date"));
                     long l1 = Long.parseLong(strDate);
                     long l2 = getLastTimeByMsisdn(rawMsisdn);
-                    if ((l1 > l2) && (!meterReading.equals("") || meterReading != null))
+                    if ((l1 > l2) && (!meterReading.equals("") || meterReading != null) && !sms.toLowerCase().contains("ac power") || !sms.toLowerCase().contains("rtu power") || !sms.toLowerCase().contains("host arm") || !sms.toLowerCase().contains("daily sms report") || !sms.toLowerCase().contains("(y)"))
                     {
                         addEntry(getTankUidByMsisdn(str1), meterReading, strDate);
                     }
@@ -311,7 +312,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
-        return lastRecord;
+        return (lastRecord==null)?0.00d:lastRecord;
     }
 
     public String getTankName(String uId) {
@@ -436,15 +437,12 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             Log.e("DB ERROR", e.toString());
             e.printStackTrace();
-            if (cursor != null) {
-                cursor.close();
-            }
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
         }
-        return meters;
+        return (meters==null||meters.equals(""))?0.00d:meters;
     }
 
     public ArrayList<String> getAllTankMsisdns() {
@@ -492,6 +490,52 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public LineData drawGraph(String uId, int dateInterval) {
+        db = getReadableDatabase();
+        List<Entry> entries = new ArrayList();
+        LineData data = new LineData();
+        Cursor cursor = null;
+        int j = 0;
+        try {
+            String[] dayRange = getDayRange(dateInterval).split("-");
+            cursor = db.query(TABLE_TANK, new String[]{TANK_LEVEL}, "tnk_uid = " + uId + " AND " + TANK_TIME + " BETWEEN " + dayRange[0] + " AND " + dayRange[1], null, null, null, "tank_time asc");
+            cursor.moveToFirst();
+            if (!cursor.isAfterLast()) {
+                do {
+                    entries.add(new Entry((float) j, cursor.getFloat(0)));
+                    j++;
+                } while (cursor.moveToNext());
+            }
+            LineDataSet dataSet = new LineDataSet(entries, TimeChart.TYPE);
+            dataSet.setFillAlpha(50);
+            dataSet.setColor(-16777216);
+            dataSet.setCircleColor(-16777216);
+            dataSet.setCircleRadius(1.0f);
+            dataSet.setDrawCircleHole(false);
+            dataSet.setValueTextSize(5.0f);
+            dataSet.setDrawFilled(true);
+            if (dataSet.getValues().size() != 0) {
+                data.addDataSet(dataSet);
+            }
+            cursor.close();
+            if (cursor != null) {
+                cursor.close();
+            }
+        } catch (SQLException e) {
+            Log.e("DB Error", e.toString());
+            e.printStackTrace();
+            if (cursor != null) {
+                cursor.close();
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return data;
+    }
+
+
+    public LineData drawWeekGraph(String uId, int dateInterval) {
         db = getReadableDatabase();
         List<Entry> entries = new ArrayList();
         LineData data = new LineData();
@@ -616,7 +660,6 @@ public class DBHelper extends SQLiteOpenHelper {
             this.mChartView = ChartFactory.getLineChartView(this.context, dataset, multiRenderer);
             if (cursor != null) {
                 cursor.close();
-
             }
 
         } catch (SQLException e) {

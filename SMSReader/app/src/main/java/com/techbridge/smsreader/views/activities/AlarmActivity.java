@@ -39,7 +39,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 
-public class AlarmActivity extends AppCompatActivity {
+public class AlarmActivity extends BaseActivity {
     private RecyclerView mList;
     private SimpleAdapter mAdapter;
     private Toolbar mToolbar;

@@ -51,6 +51,17 @@ public class TabActivity extends AppCompatActivity {
         }
     }
 
+
+    class C03221 implements View.OnClickListener {
+        C03221() {
+        }
+
+        public void onClick(View view) {
+            startActivity(new Intent(context, DashboardActivity.class));
+        }
+    }
+
+
     class C05201 implements OnTabSelectedListener {
         C05201() {
         }
@@ -129,13 +140,16 @@ public class TabActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.tab_layout);
         initWidgets();
-        initNavbar();
+        //initNavbar();
     }
 
     private void initWidgets() {
         this.mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(this.mToolbar);
-        setTitle("Home");
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_action_back));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Graphs");
+        mToolbar.setNavigationOnClickListener(new C03221());
         this.viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(this.viewPager);
         this.tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -156,7 +170,7 @@ public class TabActivity extends AppCompatActivity {
         iDrawerItemArr[0] = (IDrawerItem) new PrimaryDrawerItem().withName("Home");
         iDrawerItemArr[1] = (IDrawerItem) new PrimaryDrawerItem().withName("Tanks");
         iDrawerItemArr[2] = (IDrawerItem) new PrimaryDrawerItem().withName("About Us");
-        iDrawerItemArr[3] = (IDrawerItem) ((ExpandableDrawerItem) ((ExpandableDrawerItem) new ExpandableDrawerItem().withName("Settings")).withIdentifier(1)).withSubItems((IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("App Setting"), (IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Controller Settings "));
+        //iDrawerItemArr[3] = (IDrawerItem) ((ExpandableDrawerItem) ((ExpandableDrawerItem) new ExpandableDrawerItem().withName("Settings")).withIdentifier(1)).withSubItems((IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("App Setting"), (IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Controller Settings "));
         drawerBuilder.addDrawerItems(iDrawerItemArr);
         drawerBuilder.withOnDrawerItemClickListener(new C05223());
         drawerBuilder.withHeaderDivider(false);
@@ -168,8 +182,8 @@ public class TabActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new VisualisationFragment(), "TANK LEVELS");
-        adapter.addFragment(new GraphFragment(), "GRAPH");
+        adapter.addFragment(new GraphFragment(), "DAILY VIEW");
+        adapter.addFragment(new GraphFragment(), "WEEK VIEW");
         adapter.notifyDataSetChanged();
         viewPager.setAdapter(adapter);
     }

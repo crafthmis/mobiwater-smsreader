@@ -29,7 +29,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog.OnTimeSetListen
 import java.util.Calendar;
 import org.apache.commons.lang3.StringUtils;
 
-public class EditReminderActivity extends AppCompatActivity implements OnTimeSetListener, OnDateSetListener {
+public class EditReminderActivity extends BaseActivity implements OnTimeSetListener, OnDateSetListener {
     public static final String EXTRA_REMINDER_ID = "Reminder_ID";
     private static final String KEY_ACTIVE = "active_key";
     private static final String KEY_DATE = "date_key";

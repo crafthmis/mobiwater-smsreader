@@ -25,7 +25,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import java.util.Calendar;
 import org.apache.commons.lang3.StringUtils;
 
-public class AddReminderActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+public class AddReminderActivity extends BaseActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
     private static final String KEY_ACTIVE = "active_key";
     private static final String KEY_DATE = "date_key";
     private static final String KEY_REPEAT = "repeat_key";

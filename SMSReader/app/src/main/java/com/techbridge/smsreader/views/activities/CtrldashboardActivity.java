@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.techbridge.smsreader.R;
 import com.techbridge.smsreader.utils.Prefs;
 
-public class CtrldashboardActivity extends AppCompatActivity implements OnClickListener {
+public class CtrldashboardActivity extends BaseActivity implements OnClickListener {
     private Button btnNumbers;
     private Button btnReport;
     private Button btnSync;

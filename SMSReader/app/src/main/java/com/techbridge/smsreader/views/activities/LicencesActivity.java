@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import com.techbridge.smsreader.R;
 
-public class LicencesActivity extends AppCompatActivity {
+public class LicencesActivity extends BaseActivity {
     private Toolbar mToolbar;
 
     class C03161 implements OnClickListener {

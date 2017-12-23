@@ -21,7 +21,7 @@ import com.techbridge.smsreader.db.DBHelper;
 import com.techbridge.smsreader.utils.Prefs;
 import com.techbridge.smsreader.views.adapters.MonthAdapter;
 
-public class HistoricaldataActivity extends AppCompatActivity implements OnClickListener {
+public class HistoricaldataActivity extends BaseActivity implements OnClickListener {
     private Context context = HistoricaldataActivity.this;
     public ArrayAdapter<String> dataAdapter;
     public ArrayAdapter<String> dataAdapter2;

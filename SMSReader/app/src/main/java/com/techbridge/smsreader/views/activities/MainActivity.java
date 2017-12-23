@@ -14,7 +14,7 @@ import com.techbridge.smsreader.R;
 import com.techbridge.smsreader.db.DBHelper;
 import com.techbridge.smsreader.views.adapters.TankAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private Context context = this;
     private DBHelper dbhelper;
     private Toolbar mToolbar;

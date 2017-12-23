@@ -16,7 +16,7 @@ import com.techbridge.smsreader.models.Setting;
 import com.techbridge.smsreader.utils.Prefs;
 import com.techbridge.smsreader.utils.Utils;
 
-public class EditsettingActivity extends AppCompatActivity implements OnClickListener {
+public class EditsettingActivity extends BaseActivity implements OnClickListener {
     private EditText baseArea;
     private Context context = this;
     private DBHelper dbHelper;
