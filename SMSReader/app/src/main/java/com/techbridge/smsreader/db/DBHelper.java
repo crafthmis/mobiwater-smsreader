@@ -354,7 +354,7 @@ public class DBHelper extends SQLiteOpenHelper {
             DecimalFormat dcf = new DecimalFormat("#.00");
             Date netDate = new Date(Long.parseLong(cursor.getString(0)));
             String[] dayRange = getDayRange(0).split("-");
-            result = String.valueOf("Water Level  = " + Double.parseDouble(cursor.getString(1)) + " Metres \nReading Time = " + sdf.format(netDate) + "\n Amount of water left = " + dcf.format(getTankVolumeByUid(uId)) + " Litres");
+            result = String.valueOf("Water Level  = " + Double.parseDouble(cursor.getString(1)) + " M\nTime = " + sdf.format(netDate) + "\n Water left = " + dcf.format(getTankVolumeByUid(uId)) + " Ltrs");
             if (cursor != null) {
                 cursor.close();
             }

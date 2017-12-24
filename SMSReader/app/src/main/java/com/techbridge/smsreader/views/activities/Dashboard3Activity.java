@@ -10,24 +10,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.github.clans.fab.FloatingActionButton;
 import com.github.jorgecastillo.FillableLoader;
 import com.github.jorgecastillo.FillableLoaderBuilder;
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform;
@@ -45,15 +39,13 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.techbridge.smsreader.R;
 import com.techbridge.smsreader.db.DBHelper;
-import com.techbridge.smsreader.utils.BackgroundService;
 import com.techbridge.smsreader.utils.Paths;
 import com.techbridge.smsreader.utils.Utils;
 
 
-
-public class DashboardActivity extends BaseActivity implements View.OnClickListener {
+public class Dashboard3Activity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
-    private static DashboardActivity activity;
+    private static Dashboard3Activity activity;
     private TextView batterytext;
     private Context context = this;
     public ArrayAdapter<String> dataAdapter;
@@ -98,11 +90,11 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         DBHelper dbHelper;
 
         private AsyncCallWS() {
-            dbHelper = new DBHelper(DashboardActivity.this);
+            dbHelper = new DBHelper(Dashboard3Activity.this);
         }
 
         protected void onPreExecute() {
-            pDialog = new ProgressDialog(DashboardActivity.this);
+            pDialog = new ProgressDialog(Dashboard3Activity.this);
             pDialog.setMessage("Updating...");
             pDialog.setIndeterminate(false);
             pDialog.setCanceledOnTouchOutside(false);
@@ -165,7 +157,7 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    public static DashboardActivity instance() {
+    public static Dashboard3Activity instance() {
         return activity;
     }
 
