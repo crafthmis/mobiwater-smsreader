@@ -192,38 +192,34 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return dataSettings;
     }
-    public void readInbox(String rawMsisdn)   {
+
+    public void readInbox(String rawMsisdn) {
         db = getWritableDatabase();
         String str1 = "+254" + StringUtils.substring(rawMsisdn, rawMsisdn.length() - 9, rawMsisdn.length());
         Cursor cursor = null;
-        try
-        {
+        try {
             Uri uri = Uri.parse("content://sms/inbox");
             String str2 = "address = '" + str1 + "'";
-            cursor = context.getContentResolver().query(uri, new String[] { "address", "person", "body", "date", "type" }, str2, null, "date asc");
+            cursor = context.getContentResolver().query(uri, new String[]{"address", "person", "body", "date", "type"}, str2, null, "date asc");
             cursor.moveToFirst();
-            if (cursor!=null)      {
-                do
-                {
+            if (cursor != null) {
+                do {
                     String sms = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-                    String meterReading = StringUtils.substringBefore(sms , ";").replaceAll("[^0-9.]", "");
+                    String meterReading = StringUtils.substringBefore(sms, ";").replaceAll("[^0-9.]", "");
                     String strDate = cursor.getString(cursor.getColumnIndexOrThrow("date"));
                     long l1 = Long.parseLong(strDate);
                     long l2 = getLastTimeByMsisdn(rawMsisdn);
-                    if ((l1 > l2) && (!meterReading.equals("") || meterReading != null) && !sms.toLowerCase().contains("ac power") || !sms.toLowerCase().contains("rtu power") || !sms.toLowerCase().contains("host arm") || !sms.toLowerCase().contains("daily sms report") || !sms.toLowerCase().contains("(y)"))
-                    {
+                    if ((l1 > l2) || (!meterReading.equals("") || meterReading != null) || !sms.toLowerCase().contains("ac power") || !sms.toLowerCase().contains("rtu power") || !sms.toLowerCase().contains("host arm") || !sms.toLowerCase().contains("daily sms report") || !sms.toLowerCase().contains("(y)")) {
                         addEntry(getTankUidByMsisdn(str1), meterReading, strDate);
                     }
 
                 } while (cursor.moveToNext());
             }
-            if (cursor != null)
-            {
+            if (cursor != null) {
                 cursor.close();
                 return;
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             Log.e("DB Error", e.toString());
             e.printStackTrace();
             if (cursor != null) {
@@ -235,6 +231,7 @@ public class DBHelper extends SQLiteOpenHelper {
             }
         }
     }
+
     public String getTankUniqueIndex(int index) {
         db = getReadableDatabase();
         ArrayList<String> dataSettings = new ArrayList();
@@ -312,8 +309,31 @@ public class DBHelper extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
-        return (lastRecord==null)?0.00d:lastRecord;
+        return (lastRecord == null) ? 0.00d : lastRecord;
     }
+
+    public int getTankCount() {
+        int tankCount = 0;
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery(("SELECT COUNT(*) AS TANKS FROM "+ TABLE_TANK_SETTINGS),null,null);
+            cursor.moveToFirst();
+            tankCount = cursor.getInt(0);
+        } catch (Exception e) {
+            Log.e("DB ERROR ", e.toString());
+            e.printStackTrace();
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return (tankCount == 0) ? 0 : tankCount;
+    }
+
 
     public String getTankName(String uId) {
         db = getReadableDatabase();
@@ -350,11 +370,12 @@ public class DBHelper extends SQLiteOpenHelper {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeZone(TimeZone.getTimeZone("GMT+3"));
             int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-            SimpleDateFormat sdf = new SimpleDateFormat("E dd/MM/yyyy  hh:mm a");
-            DecimalFormat dcf = new DecimalFormat("#.00");
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a  dd/MM/yyyy  ");
+            DecimalFormat dcf = new DecimalFormat("#");
             Date netDate = new Date(Long.parseLong(cursor.getString(0)));
             String[] dayRange = getDayRange(0).split("-");
-            result = String.valueOf("Water Level  = " + Double.parseDouble(cursor.getString(1)) + " M\nTime = " + sdf.format(netDate) + "\n Water left = " + dcf.format(getTankVolumeByUid(uId)) + " Ltrs");
+            //result = String.valueOf("Level  = <h1 style=\"color:#2196F3;\"> " + Double.parseDouble(cursor.getString(1)) + " M </h1>\nTime = " + sdf.format(netDate) + "-Water left = " + dcf.format(getTankVolumeByUid(uId)) + " Ltrs");
+            result = String.valueOf(Double.parseDouble(cursor.getString(1)) + "M <>" + sdf.format(netDate) + "-" + dcf.format(getTankVolumeByUid(uId)) + " L");
             if (cursor != null) {
                 cursor.close();
             }
@@ -442,7 +463,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
-        return (meters==null||meters.equals(""))?0.00d:meters;
+        return (meters == null || meters.equals("")) ? 0.00d : meters;
     }
 
     public ArrayList<String> getAllTankMsisdns() {
@@ -826,8 +847,8 @@ public class DBHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         } finally {
             if (curCSV != null) {
-                    curCSV.close();
-                }
+                curCSV.close();
+            }
         }
     }
 

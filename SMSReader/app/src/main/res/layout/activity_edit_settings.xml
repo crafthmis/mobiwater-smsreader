@@ -41,6 +41,7 @@
                         android:layout_marginTop="16.0dip"
                         android:text="Tank Name"
                         android:textSize="18.0sp"
+                        android:maxLength="15"
                         android:textStyle="bold" />
 
                     <View

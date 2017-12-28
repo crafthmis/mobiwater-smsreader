@@ -10,24 +10,22 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.SuperscriptSpan;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.github.clans.fab.FloatingActionButton;
 import com.github.jorgecastillo.FillableLoader;
 import com.github.jorgecastillo.FillableLoaderBuilder;
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform;
@@ -45,10 +43,12 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.techbridge.smsreader.R;
 import com.techbridge.smsreader.db.DBHelper;
-import com.techbridge.smsreader.utils.BackgroundService;
 import com.techbridge.smsreader.utils.Paths;
 import com.techbridge.smsreader.utils.Utils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import static java.lang.Math.floor;
 
 
 public class DashboardActivity extends BaseActivity implements View.OnClickListener {
@@ -61,29 +61,16 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
     private DBHelper dbhelper;
     private boolean doubleBackToExitPressedOnce = false;
     private Toolbar mToolbar;
-    private TextView meterReading;
+    private TextView meterReading,meterReading2,meterReading3,tankText,waterPercentage;
     private Paint f62p = new Paint();
     private ProgressDialog pDialog;
     private PermissionHelper permissionHelper;
     private Spinner spinner;
     private LinearLayout linearLayout;
+    private Button btnBack, btnNext;
+    private int i = 0;
 
-    class C03024 implements OnItemSelectedListener {
-        C03024() {
-        }
 
-        public void onItemSelected(AdapterView<?> adapterView, View v, int position, long id) {
-            if (dbhelper.getTankNames().size() > 0) {
-                String tankUniqueId = dbhelper.getTankUniqueIndex(position);
-                Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId));
-                UpdateTank(percentage);
-            }
-        }
-
-        public void onNothingSelected(AdapterView<?> adapterView) {
-        }
-    }
 
     class C03035 implements Runnable {
         C03035() {
@@ -118,8 +105,14 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
             if (pDialog != null || pDialog.isShowing()) {
                 pDialog.dismiss();
                 Utils.showShortToast(context, "Successfully updated").show();
-                loadSpinnerData();
-            }
+                String tankUniqueId = dbhelper.getTankUniqueIndex(0);
+                Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
+                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
+                meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
+                meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+                waterPercentage.setText(convertPercentage(percentage));
+                tankText.setText(dbhelper.getTankName(tankUniqueId));
+                UpdateTank(percentage);            }
         }
     }
 
@@ -175,7 +168,6 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_dashboard);
         permissionEnable();
         initWidgets();
-        loadSpinnerData();
         //startService(new Intent(context, BackgroundService.class));
     }
 
@@ -203,24 +195,32 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
 
     private void initWidgets() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle("Home");
+        mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         dbhelper = new DBHelper(this);
         meterReading = (TextView) findViewById(R.id.meterreading);
-        //batterytext = (TextView) findViewById(R.id.batterytext);
-        spinner = (Spinner) findViewById(R.id.spinner);
+        meterReading2 = (TextView) findViewById(R.id.meterreading2);
+        meterReading3 = (TextView) findViewById(R.id.meterreading3);
 
+        waterPercentage = (TextView) findViewById(R.id.waterPercentage);
+        tankText = (TextView) findViewById(R.id.tank_text);
+        btnBack = (Button) findViewById(R.id.btn_back);
+        btnNext = (Button) findViewById(R.id.btn_next);
+        btnBack.setOnClickListener(this);
+        btnNext.setOnClickListener(this);
 
-        /*fab1 = (FloatingActionButton)findViewById(R.id.menu_item1);
-        fab2 = (FloatingActionButton)findViewById(R.id.menu_item2);
-        fab3 = (FloatingActionButton)findViewById(R.id.menu_item3);
+        if (dbhelper.getTankNames().size() > 0) {
+            String tankUniqueId = dbhelper.getTankUniqueIndex(0);
+            Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
+            meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
+            meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
+            meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+            waterPercentage.setText(convertPercentage(percentage));
+            tankText.setText(dbhelper.getTankName(tankUniqueId));
+            UpdateTank(percentage);
+        }
 
-        fab1.setOnClickListener(this);
-        fab2.setOnClickListener(this);
-        fab3.setOnClickListener(this);*/
-
-
-        AccountHeader headerResult = new AccountHeaderBuilder().withActivity(this).withOnAccountHeaderListener(new C05132()).build();
+        AccountHeader headerResult = new AccountHeaderBuilder().withActivity(this).withHeaderBackground((int) R.drawable.header).withOnAccountHeaderListener(new C05132()).build();
         Integer badgeColor = Integer.valueOf(getBaseContext().getResources().getColor(R.color.colorBlack));
         BadgeStyle badgeStyle = new BadgeStyle(badgeColor.intValue(), badgeColor.intValue()).withTextColor(getResources().getColor(R.color.colorRed));
         DrawerBuilder drawerBuilder = new DrawerBuilder();
@@ -231,7 +231,7 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         IDrawerItem[] iDrawerItemArr = new IDrawerItem[3];
         iDrawerItemArr[0] = (IDrawerItem) new PrimaryDrawerItem().withName("Graphs");
         iDrawerItemArr[1] = (IDrawerItem) new PrimaryDrawerItem().withName("Past Data");
-        iDrawerItemArr[2] = (IDrawerItem) ((ExpandableDrawerItem)((ExpandableDrawerItem) new ExpandableDrawerItem().withName("Settings")).withIdentifier(1)).withSubItems((IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Tank Settings"), (IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Controller Settings "), (IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Alarm Settings "));
+        iDrawerItemArr[2] = (IDrawerItem) ((ExpandableDrawerItem) ((ExpandableDrawerItem) new ExpandableDrawerItem().withName("Settings")).withIdentifier(1)).withSubItems((IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Tank Settings"), (IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Controller Settings "), (IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(3)).withName("Alarm Settings "));
         drawerBuilder.addDrawerItems(iDrawerItemArr);
         drawerBuilder.withOnDrawerItemClickListener(new C05143());
         drawerBuilder.withHeaderDivider(false);
@@ -241,18 +241,19 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         drawerBuilder.build();
     }
 
-    public void UpdateTank(Double level){
+    public void UpdateTank(Double level) {
         linearLayout = (LinearLayout) findViewById(R.id.tankView);
         linearLayout.removeAllViews();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         FillableLoaderBuilder loaderBuilder = new FillableLoaderBuilder();
         fillableLoader = loaderBuilder.parentView(linearLayout)
                 .svgPath(Paths.DRINKING_BOTTLE)
                 .layoutParams(params)
-                .originalDimensions(700, 970)
-                .strokeColor(Color.parseColor("#673AB7"))
+                .originalDimensions(970, 1678)
+                .strokeColor(Color.parseColor("#FFFFFF"))
                 .fillColor(Color.parseColor("#E3F6FA"))
                 .strokeDrawingDuration(0)
+                .strokeWidth(2)
                 .clippingTransform(new WavesClippingTransform())
                 .fillDuration(2000)
                 .percentage(Float.parseFloat(level.toString()))
@@ -261,14 +262,10 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         fillableLoader.start();
     }
 
-    public void loadSpinnerData() {
-        if (dbhelper.getTankNames().size() > 0) {
-            dataAdapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, dbhelper.getTankNames());
-            dataAdapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
-            dataAdapter.notifyDataSetChanged();
-            spinner.setAdapter(dataAdapter);
-        }
-        spinner.setOnItemSelectedListener(new C03024());
+
+
+    public String convertPercentage(Double percentage){
+        return (percentage==0)?"0":StringUtils.substringBefore(String.valueOf(floor(percentage)),".")+"%";
     }
 
 
@@ -303,8 +300,6 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         super.onRestart();
         finish();
         startActivity(getIntent());
-        //dataAdapter.notifyDataSetChanged();
-        spinner.setAdapter(dataAdapter);
     }
 
     public void onPause() {
@@ -337,6 +332,43 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
             case R.id.menu_item3:
                 startActivity(new Intent(context, AlarmActivity.class));
                 break;
+            case R.id.btn_back:
+                i--;
+                if (i >= 0) {
+                    //Utils.showShortToast(context,i+"").show();
+                    String tankUniqueId = dbhelper.getTankUniqueIndex(i);
+                    Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
+                    meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
+                    meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
+                    meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+                    waterPercentage.setText(convertPercentage(percentage));
+                    tankText.setText(dbhelper.getTankName(tankUniqueId));
+                    UpdateTank(percentage);
+                } else {
+                    i = 0;
+                    Utils.showShortToast(context, "First Tank").show();
+                }
+                break;
+            case R.id.btn_next:
+                i++;
+                if (i < dbhelper.getTankCount()) {
+                    //Utils.showShortToast(context,i+"").show();
+                    String tankUniqueId = dbhelper.getTankUniqueIndex(i);
+                    Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
+                    meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
+                    meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
+                    meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+                    waterPercentage.setText(convertPercentage(percentage));
+                    tankText.setText(dbhelper.getTankName(tankUniqueId));
+                    UpdateTank(percentage);
+                    break;
+                } else {
+                    i = dbhelper.getTankCount()-1;
+                    Utils.showShortToast(context, "Last Tank").show();
+                }
+                break;
+            default:
+                return;
         }
     }
 }

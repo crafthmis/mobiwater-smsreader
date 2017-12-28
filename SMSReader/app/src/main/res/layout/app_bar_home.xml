@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="fill_parent"
+    android:layout_height="?actionBarSize"
+    android:background="#64B5F6"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:theme="@style/MyCustomThemeBar" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:focusable="true"
+        android:weightSum="10"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2.0"
+            android:background="@drawable/ic_action_chevron_left"/>
+
+        <TextView
+            android:id="@+id/tank_text"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="6.0"
+            android:textSize="18sp"
+            android:text="No Tanks. Please add"
+            android:paddingTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite" />
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2.0"
+            android:background="@drawable/ic_action_chevron_right"/>
+    </LinearLayout>
+
+
+</android.support.v7.widget.Toolbar>

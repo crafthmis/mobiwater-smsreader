@@ -18,7 +18,7 @@ public class MobiApp extends Application {
         super.onCreate();
         startService(new Intent(this, BackgroundService.class));
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Verdana.ttf")
+                .setDefaultFontPath("fonts/Roboto-Medium.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );

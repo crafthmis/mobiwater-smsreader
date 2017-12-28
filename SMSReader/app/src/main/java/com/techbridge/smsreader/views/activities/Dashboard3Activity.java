@@ -164,7 +164,7 @@ public class Dashboard3Activity extends BaseActivity implements View.OnClickList
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard3);
         permissionEnable();
         initWidgets();
         loadSpinnerData();
