@@ -107,12 +107,14 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
                 Utils.showShortToast(context, "Successfully updated").show();
                 String tankUniqueId = dbhelper.getTankUniqueIndex(0);
                 Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
-                meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
-                meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+                String[] result2 = dbhelper.getLastTextTanklevel(tankUniqueId);
+                meterReading.setText(result2[0]);
+                meterReading3.setText(result2[1]);
+                meterReading2.setText(result2[2]);
                 waterPercentage.setText(convertPercentage(percentage));
                 tankText.setText(dbhelper.getTankName(tankUniqueId));
-                UpdateTank(percentage);            }
+                UpdateTank(percentage);
+            }
         }
     }
 
@@ -201,7 +203,6 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         meterReading = (TextView) findViewById(R.id.meterreading);
         meterReading2 = (TextView) findViewById(R.id.meterreading2);
         meterReading3 = (TextView) findViewById(R.id.meterreading3);
-
         waterPercentage = (TextView) findViewById(R.id.waterPercentage);
         tankText = (TextView) findViewById(R.id.tank_text);
         btnBack = (Button) findViewById(R.id.btn_back);
@@ -212,9 +213,10 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         if (dbhelper.getTankNames().size() > 0) {
             String tankUniqueId = dbhelper.getTankUniqueIndex(0);
             Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-            meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
-            meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
-            meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+            String[] result2 = dbhelper.getLastTextTanklevel(tankUniqueId);
+            meterReading.setText(result2[0]);
+            meterReading3.setText(result2[1]);
+            meterReading2.setText(result2[2]);
             waterPercentage.setText(convertPercentage(percentage));
             tankText.setText(dbhelper.getTankName(tankUniqueId));
             UpdateTank(percentage);
@@ -338,9 +340,10 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
                     //Utils.showShortToast(context,i+"").show();
                     String tankUniqueId = dbhelper.getTankUniqueIndex(i);
                     Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-                    meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
-                    meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
-                    meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+                    String[] result2 = dbhelper.getLastTextTanklevel(tankUniqueId);
+                    meterReading.setText(result2[0]);
+                    meterReading3.setText(result2[1]);
+                    meterReading2.setText(result2[2]);
                     waterPercentage.setText(convertPercentage(percentage));
                     tankText.setText(dbhelper.getTankName(tankUniqueId));
                     UpdateTank(percentage);
@@ -355,9 +358,10 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
                     //Utils.showShortToast(context,i+"").show();
                     String tankUniqueId = dbhelper.getTankUniqueIndex(i);
                     Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-                    meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[0]);
-                    meterReading3.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[0].split("<>")[1]);
-                    meterReading2.setText(dbhelper.getLastTextTanklevel(tankUniqueId).split("-")[1]);
+                    String[] result2 = dbhelper.getLastTextTanklevel(tankUniqueId);
+                    meterReading.setText(result2[0]);
+                    meterReading3.setText(result2[1]);
+                    meterReading2.setText(result2[2]);
                     waterPercentage.setText(convertPercentage(percentage));
                     tankText.setText(dbhelper.getTankName(tankUniqueId));
                     UpdateTank(percentage);

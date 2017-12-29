@@ -360,9 +360,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return tankName;
     }
 
-    public String getLastTextTanklevel(String uId) {
+    public String[] getLastTextTanklevel(String uId) {
         db = getReadableDatabase();
-        String result = "";
+        String[] result = new String[3];
         Cursor cursor = null;
         try {
             cursor = db.rawQuery(("SELECT MAX(tank_time) ,tank_level" + " FROM tbl_tank_level") + " WHERE tnk_uid = " + StringUtils.trim(uId), null);
@@ -374,11 +374,9 @@ public class DBHelper extends SQLiteOpenHelper {
             DecimalFormat dcf = new DecimalFormat("#");
             Date netDate = new Date(Long.parseLong(cursor.getString(0)));
             String[] dayRange = getDayRange(0).split("-");
-            //result = String.valueOf("Level  = <h1 style=\"color:#2196F3;\"> " + Double.parseDouble(cursor.getString(1)) + " M </h1>\nTime = " + sdf.format(netDate) + "-Water left = " + dcf.format(getTankVolumeByUid(uId)) + " Ltrs");
-            result = String.valueOf(Double.parseDouble(cursor.getString(1)) + "M <>" + sdf.format(netDate) + "-" + dcf.format(getTankVolumeByUid(uId)) + " L");
-            if (cursor != null) {
-                cursor.close();
-            }
+            result[0] =   String.valueOf(Double.parseDouble(cursor.getString(1)));
+            result[1] =   sdf.format(netDate);
+            result[2] =   dcf.format(getTankVolumeByUid(uId)) + " L";
         } catch (Exception e) {
             Log.e("DB ERROR", e.toString());
             e.printStackTrace();

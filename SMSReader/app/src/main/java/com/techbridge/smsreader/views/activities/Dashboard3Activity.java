@@ -68,7 +68,7 @@ public class Dashboard3Activity extends BaseActivity implements View.OnClickList
             if (dbhelper.getTankNames().size() > 0) {
                 String tankUniqueId = dbhelper.getTankUniqueIndex(position);
                 Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId));
+                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId)[2]);
                 UpdateTank(percentage);
             }
         }

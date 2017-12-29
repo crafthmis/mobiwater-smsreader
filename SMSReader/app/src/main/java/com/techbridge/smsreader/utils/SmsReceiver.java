@@ -55,7 +55,7 @@ public class SmsReceiver extends BroadcastReceiver {
                                     }
                                     SystemClock.sleep(2000);
                                     dbhelper.updateTankReadings();
-                                    setDataForSimpleNotification(context2, dbhelper.getLastTextTanklevel(dbhelper.getTankUidByMsisdn(senderMobileNo)));
+                                    setDataForSimpleNotification(context2, dbhelper.getLastTextTanklevel(dbhelper.getTankUidByMsisdn(senderMobileNo))[2]);
                                 }
                             });
                         }

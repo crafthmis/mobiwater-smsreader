@@ -76,7 +76,7 @@ public class Dashboard2Activity extends AppCompatActivity implements View.OnClic
             if (dbhelper.getTankNames().size() > 0) {
                 String tankUniqueId = dbhelper.getTankUniqueIndex(position);
                 Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId));
+                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId)[2]);
                 UpdateTank(percentage);
             }
         }

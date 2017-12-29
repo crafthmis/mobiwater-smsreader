@@ -67,7 +67,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0.0dip"
@@ -82,7 +81,7 @@
                 android:gravity="center"
                 android:text="60%"
                 android:textColor="@color/colorWhite"
-                android:textSize="45sp"
+                android:textSize="45dp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -112,24 +111,24 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0.0dp"
-                    android:layout_weight="0.30"
+                    android:layout_weight="0.35"
                     android:paddingTop="5dp"
                     android:paddingLeft="5dp"
                     android:textAllCaps="false"
                     android:textColor="@color/colorBlack"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:text="Level"
                     android:visibility="visible" />
                 <TextView
                     android:id="@+id/meterreading"
                     android:layout_width="match_parent"
                     android:layout_height="0.0dp"
-                    android:layout_weight="0.70"
+                    android:layout_weight="0.65"
                     android:paddingTop="5dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="25sp"
+                    android:textSize="25dp"
                     android:visibility="visible" />
                 <TextView
                     android:layout_width="match_parent"
@@ -137,7 +136,7 @@
                     android:layout_weight="0.5"
                     android:textAllCaps="false"
                     android:textColor="@color/colorBlack"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:paddingTop="5dp"
                     android:paddingLeft="5dp"
                     android:text="Time"
@@ -151,7 +150,7 @@
                     android:paddingLeft="1dp"
                     android:textAllCaps="true"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -171,17 +170,17 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/colorBlack"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:text="Water Left"/>
                 <TextView
                     android:id="@+id/meterreading2"
                     android:layout_width="match_parent"
                     android:layout_height="0.0dp"
                     android:layout_weight="0.80"
-                    android:textAlignment="center"
                     android:textAllCaps="true"
+                    android:paddingLeft="5dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="70sp"
+                    android:textSize="50dp"
                     android:visibility="visible" />
             </LinearLayout>
         </LinearLayout>

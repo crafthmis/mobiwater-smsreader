@@ -40,7 +40,7 @@ public class VisualisationFragment extends Fragment {
         public void onItemSelected(AdapterView<?> adapterView, View v, int position, long id) {
             String tankUniqueId = dbhelper.getTankUniqueIndex(position);
             Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-            meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId));
+            meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId)[2]);
             UpdateTank(percentage);
         }
 
@@ -88,7 +88,7 @@ public class VisualisationFragment extends Fragment {
 
                 String tankUniqueId = dbhelper.getTankUniqueIndex(position);
                 Double percentage = dbhelper.getTankPercentageByUid(tankUniqueId);
-                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId));
+                meterReading.setText(dbhelper.getLastTextTanklevel(tankUniqueId)[2]);
                 UpdateTank(percentage);
             }
 
