@@ -209,7 +209,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     String strDate = cursor.getString(cursor.getColumnIndexOrThrow("date"));
                     long l1 = Long.parseLong(strDate);
                     long l2 = getLastTimeByMsisdn(rawMsisdn);
-                    if ((l1 > l2) || (!meterReading.equals("") || meterReading != null) || !sms.toLowerCase().contains("ac power") || !sms.toLowerCase().contains("rtu power") || !sms.toLowerCase().contains("host arm") || !sms.toLowerCase().contains("daily sms report") || !sms.toLowerCase().contains("(y)")) {
+                    if ((l1 > l2) && (!meterReading.equalsIgnoreCase("") || meterReading != null) && (!sms.toLowerCase().contains("Daily !sms report")||!sms.toLowerCase().contains("tel")||!sms.toLowerCase().contains("rtu power")||!sms.toLowerCase().contains("!sms format error")||!sms.toLowerCase().contains("ac power")||!sms.toLowerCase().contains("humidity")||!sms.toLowerCase().contains("host arm")||!sms.toLowerCase().contains("server")||!sms.toLowerCase().contains("gprs always online")||!sms.toLowerCase().contains("armed")||!sms.toLowerCase().contains("disarmed"))) {
                         addEntry(getTankUidByMsisdn(str1), meterReading, strDate);
                     }
 
@@ -343,9 +343,6 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(("SELECT tank_name" + " FROM tbl_tank_settings") + " WHERE tnk_uid = " + StringUtils.trim(uId) + " LIMIT 1", null);
             cursor.moveToFirst();
             tankName = cursor.getString(0);
-            if (cursor != null) {
-                cursor.close();
-            }
         } catch (Exception e) {
             Log.e("DB ERROR", e.toString());
             e.printStackTrace();
@@ -370,11 +367,11 @@ public class DBHelper extends SQLiteOpenHelper {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeZone(TimeZone.getTimeZone("GMT+3"));
             int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a  dd/MM/yyyy  ");
-            DecimalFormat dcf = new DecimalFormat("#");
+            SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a ,  dd/MM/yyyy  ");
+            DecimalFormat dcf = new DecimalFormat("##,###");
             Date netDate = new Date(Long.parseLong(cursor.getString(0)));
             String[] dayRange = getDayRange(0).split("-");
-            result[0] =   String.valueOf(Double.parseDouble(cursor.getString(1)));
+            result[0] =   String.valueOf(Double.parseDouble(cursor.getString(1)))+" M";
             result[1] =   sdf.format(netDate);
             result[2] =   dcf.format(getTankVolumeByUid(uId)) + " L";
         } catch (Exception e) {
@@ -400,9 +397,6 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(("SELECT tnk_uid" + " FROM tbl_tank_settings") + " WHERE tank_msisdn = '" + StringUtils.trim(parsedMsisdn) + "'", null);
             cursor.moveToFirst();
             lastRecord = cursor.getString(0);
-            if (cursor != null) {
-                cursor.close();
-            }
         } catch (Exception e) {
             Log.e("DB ERROR", e.toString());
             e.printStackTrace();
@@ -425,9 +419,6 @@ public class DBHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(("SELECT top_height" + " FROM tbl_tank_settings") + " WHERE tnk_uid = " + StringUtils.trim(uId), null);
             cursor.moveToFirst();
             lastRecord = Double.valueOf((getLastTanklevel(uId).doubleValue() / Double.parseDouble(cursor.getString(0))) * 100.0d);
-            if (cursor != null) {
-                cursor.close();
-            }
         } catch (Exception e) {
             Log.e("DB ERROR", e.toString());
             e.printStackTrace();
@@ -659,11 +650,7 @@ public class DBHelper extends SQLiteOpenHelper {
             multiRenderer.setXLabels(0);
             dataset.addSeries(xYSeries);
             waterSeriesRenderer.setColor(-1);
-            //waterSeriesRenderer.setPointStyle(PointStyle.POINT);
-            //waterSeriesRenderer.setFillPoints(false);
-            //waterSeriesRenderer.setLineWidth(2.0f);
             waterSeriesRenderer.setChartValuesFormat(new DecimalFormat("#.00"));
-            //waterSeriesRenderer.setDisplayChartValues(true);
             multiRenderer.setApplyBackgroundColor(true);
             multiRenderer.setShowGrid(true);
             multiRenderer.setBackgroundColor(R.color.colorWhite);
@@ -747,16 +734,16 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(TABLE_TANK, new String[]{TANK_TIME, TANK_LEVEL}, "tnk_uid = " + uId + " AND " + TANK_TIME + " BETWEEN " + mnthRange[0] + " AND " + mnthRange[1], null, null, null, "tank_time desc");
         cursor.moveToFirst();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy");
-        simpleDateFormat = new SimpleDateFormat("hh:mm:ss a");
+        SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("hh:mm:ss a");
         String prevDate = "";
         if (!cursor.isAfterLast()) {
             do {
                 Date date = new Date(Long.parseLong(cursor.getString(0)));
                 String dayReading = StringUtils.rightPad(String.valueOf(cursor.getFloat(1)), 4, "0") + " M";
                 if (simpleDateFormat.format(date).equals(prevDate)) {
-                    listDetails.add(new MonthDetails(StringUtils.SPACE, simpleDateFormat.format(date), dayReading));
+                    listDetails.add(new MonthDetails(StringUtils.SPACE, simpleDateFormat2.format(date), dayReading));
                 } else {
-                    listDetails.add(new MonthDetails(simpleDateFormat.format(date) + "  ", simpleDateFormat.format(date), dayReading));
+                    listDetails.add(new MonthDetails(simpleDateFormat.format(date) + "  ", simpleDateFormat2.format(date), dayReading));
                 }
                 prevDate = simpleDateFormat.format(date);
             } while (cursor.moveToNext());

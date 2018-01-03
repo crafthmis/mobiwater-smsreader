@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <include layout="@layout/app_bar_home" />
     </LinearLayout>
 
@@ -35,12 +34,12 @@
                 android:layout_height="match_parent"
                 android:focusable="true"
                 android:orientation="horizontal"
-                android:weightSum="10">
+                android:weightSum="11">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                 </LinearLayout>
@@ -79,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="60%"
+                android:text="0%"
                 android:textColor="@color/colorWhite"
                 android:textSize="45dp"
                 android:textStyle="bold" />
@@ -126,7 +125,7 @@
                     android:layout_weight="0.65"
                     android:paddingTop="5dp"
                     android:textAlignment="center"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="25dp"
                     android:visibility="visible" />
@@ -148,7 +147,7 @@
                     android:layout_weight="0.5"
                     android:textAlignment="center"
                     android:paddingLeft="1dp"
-                    android:textAllCaps="true"
+                    android:textAllCaps="false"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="15dp"
                     android:visibility="visible" />

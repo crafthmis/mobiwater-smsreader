@@ -18,4 +18,5 @@
     <color name="accent">@color/colorAccent</color>
     <color name="toolbarPrimaryDark">#ff673ab7</color>
     <color name="toolbarPrimaryLight">#ff7e57c2</color>
+    <color name="colorWater">#E3F6FA</color>
 </resources>

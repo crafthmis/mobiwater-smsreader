@@ -27,11 +27,10 @@
             android:layout_height="fill_parent"
             android:layout_weight="6.0"
             android:textSize="18sp"
-            android:text="No Tanks. Please add"
+            android:text="No Tanks"
             android:paddingTop="5dp"
             android:textAlignment="center"
             android:textColor="@color/colorWhite" />
-
         <Button
             android:id="@+id/btn_next"
             android:layout_width="0dp"
@@ -39,6 +38,4 @@
             android:layout_weight="2.0"
             android:background="@drawable/ic_action_chevron_right"/>
     </LinearLayout>
-
-
 </android.support.v7.widget.Toolbar>
