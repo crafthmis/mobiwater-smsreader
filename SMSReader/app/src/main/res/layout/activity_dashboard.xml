@@ -99,7 +99,6 @@
             android:layout_weight="2"
             android:focusable="true"
             android:orientation="horizontal">
-
             <LinearLayout
                 android:layout_width="0.0dip"
                 android:layout_height="match_parent"
@@ -115,7 +114,7 @@
                     android:paddingLeft="5dp"
                     android:textAllCaps="false"
                     android:textColor="@color/colorBlack"
-                    android:textSize="13dp"
+                    android:textSize="@dimen/dashboard_bottom_label"
                     android:text="Level"
                     android:visibility="visible" />
                 <TextView
@@ -127,7 +126,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="25dp"
+                    android:textSize="@dimen/dashboard_level_value"
                     android:visibility="visible" />
                 <TextView
                     android:layout_width="match_parent"
@@ -135,7 +134,7 @@
                     android:layout_weight="0.5"
                     android:textAllCaps="false"
                     android:textColor="@color/colorBlack"
-                    android:textSize="13dp"
+                    android:textSize="@dimen/dashboard_bottom_label"
                     android:paddingTop="5dp"
                     android:paddingLeft="5dp"
                     android:text="Time"
@@ -149,7 +148,7 @@
                     android:paddingLeft="1dp"
                     android:textAllCaps="false"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/dashboard_time_value"
                     android:visibility="visible" />
             </LinearLayout>
 
@@ -169,7 +168,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="false"
                     android:textColor="@color/colorBlack"
-                    android:textSize="13dp"
+                    android:textSize="@dimen/dashboard_bottom_label"
                     android:text="Water Left"/>
                 <TextView
                     android:id="@+id/meterreading2"
@@ -179,7 +178,7 @@
                     android:textAllCaps="true"
                     android:paddingLeft="5dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="50dp"
+                    android:textSize="@dimen/dashboard_water_left_value"
                     android:visibility="visible" />
             </LinearLayout>
         </LinearLayout>

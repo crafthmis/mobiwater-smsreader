@@ -45,7 +45,7 @@ import java.util.TimeZone;
 
 import static java.util.Calendar.DAY_OF_MONTH;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class DBHelperOld extends SQLiteOpenHelper {
     private static final String DB_NAME = "db_tank";
     public static final int DB_VERSION = 1;
     public static final int DB_VERSION2 = 2;
@@ -76,7 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private GraphicalView mChartView;
     private String[] monthNames = new String[]{"JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"};
 
-    public DBHelper(Context context) {
+    public DBHelperOld(Context context) {
         super(context, DB_NAME, null, 2);
         this.context = context;
     }

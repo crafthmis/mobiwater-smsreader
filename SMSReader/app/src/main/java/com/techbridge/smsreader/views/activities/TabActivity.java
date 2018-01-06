@@ -22,15 +22,13 @@ import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer.OnDrawerItemClickListener;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.holder.BadgeStyle;
-import com.mikepenz.materialdrawer.model.ExpandableDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.techbridge.smsreader.R;
 import com.techbridge.smsreader.utils.Utils;
-import com.techbridge.smsreader.views.fragments.GraphFragment;
-import com.techbridge.smsreader.views.fragments.VisualisationFragment;
+import com.techbridge.smsreader.views.fragments.DayFragment;
+import com.techbridge.smsreader.views.fragments.WeekFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -182,8 +180,8 @@ public class TabActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new GraphFragment(), "DAILY VIEW");
-        adapter.addFragment(new GraphFragment(), "WEEK VIEW");
+        adapter.addFragment(new DayFragment(), "DAILY VIEW");
+        adapter.addFragment(new WeekFragment(), "WEEK VIEW");
         adapter.notifyDataSetChanged();
         viewPager.setAdapter(adapter);
     }

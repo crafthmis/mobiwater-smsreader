@@ -47,7 +47,8 @@ public class SmsReceiver extends BroadcastReceiver {
                         final String senderMsg = tmp.getMessageBody();
                         final String senderMobileNo = "0" + StringUtils.substring(senderRawMobileNo, senderRawMobileNo.length() - 9, senderRawMobileNo.length());
                         String sms = tmp.getMessageBody();
-                        if (!(!dbhelper.getAllTankMsisdns().contains(senderMobileNo) || senderMsg.toLowerCase().contains("Daily sms report")||senderMsg.toLowerCase().contains("tel")||senderMsg.toLowerCase().contains("rtu power")||senderMsg.toLowerCase().contains("sms format error")||senderMsg.toLowerCase().contains("ac power")||senderMsg.toLowerCase().contains("humidity")||senderMsg.toLowerCase().contains("host arm")||senderMsg.toLowerCase().contains("server")||senderMsg.toLowerCase().contains("gprs always online")||senderMsg.toLowerCase().contains("armed")||senderMsg.toLowerCase().contains("disarmed"))) {
+                          //if (dbhelper.getAllTankMsisdns().contains(senderMobileNo) && !(senderMsg.toLowerCase().contains("sms report") || senderMsg.toLowerCase().contains("tel") || senderMsg.toLowerCase().contains("rtu power") || senderMsg.toLowerCase().contains("sms format error") || senderMsg.toLowerCase().contains("ac power") || senderMsg.toLowerCase().contains("humidity") || senderMsg.toLowerCase().contains("host arm") || senderMsg.toLowerCase().contains("server") || senderMsg.toLowerCase().contains("gprs always online")|| senderMsg.toLowerCase().contains("armed") || senderMsg.toLowerCase().contains("disarmed"))==true) {
+                            if (dbhelper.getAllTankMsisdns().contains(senderMobileNo) && !(senderMsg.toLowerCase().contains("sms report") || senderMsg.toLowerCase().contains("tel") || senderMsg.toLowerCase().contains("rtu power") || senderMsg.toLowerCase().contains("sms format error") || senderMsg.toLowerCase().contains("ac power") || senderMsg.toLowerCase().contains("host arm") || senderMsg.toLowerCase().contains("server") || senderMsg.toLowerCase().contains("gprs always online")|| senderMsg.toLowerCase().contains("armed") || senderMsg.toLowerCase().contains("disarmed"))==true) {
                             final Context context2 = context;
                             new Handler().post(new Runnable() {
                                 public void run() {
@@ -73,8 +74,9 @@ public class SmsReceiver extends BroadcastReceiver {
 
 
     public String convertPercentage(Double percentage){
-        return (percentage==0)?"0":StringUtils.substringBefore(String.valueOf(floor(percentage)),".");
+        return (percentage==0)?"0":Integer.parseInt(StringUtils.substringBefore(String.valueOf(floor(percentage)),"."))>100?"100":StringUtils.substringBefore(String.valueOf(floor(percentage)),".");
     }
+
     private void sendNotification(Context context) {
         notificationBuilder.setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, DashboardActivity.class), PendingIntent.FLAG_UPDATE_CURRENT));
         Notification notification = notificationBuilder.build();

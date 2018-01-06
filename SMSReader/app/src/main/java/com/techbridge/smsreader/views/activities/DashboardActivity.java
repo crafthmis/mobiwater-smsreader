@@ -260,7 +260,7 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
                 .strokeWidth(6)
                 .clippingTransform(new WavesClippingTransform())
                 .fillDuration(2000)
-                .percentage(Float.parseFloat(level.toString()))
+                .percentage(Float.parseFloat(level.toString())>100?100:Float.parseFloat(level.toString()))
                 .build();
         fillableLoader.setSvgPath(Paths.DRINKING_BOTTLE);
         fillableLoader.start();
@@ -269,7 +269,7 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
 
 
     public String convertPercentage(Double percentage){
-        return (percentage==0)?"0":StringUtils.substringBefore(String.valueOf(floor(percentage)),".")+"%";
+        return (percentage==0)?"0":Integer.parseInt(StringUtils.substringBefore(String.valueOf(floor(percentage)),"."))>100?"100":StringUtils.substringBefore(String.valueOf(floor(percentage)),".")+"%";
     }
 
 
