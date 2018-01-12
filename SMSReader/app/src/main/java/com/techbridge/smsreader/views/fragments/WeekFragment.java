@@ -28,6 +28,7 @@ public class WeekFragment extends Fragment {
     String title;
 
 
+
     class C03331 implements OnItemSelectedListener {
         C03331() {
         }
@@ -81,13 +82,13 @@ public class WeekFragment extends Fragment {
             mChart.getXAxis().setCenterAxisLabels(false);
             mChart.getXAxis().setValueFormatter(new IAxisValueFormatter() {
                 public String getFormattedValue(float value, AxisBase axis) {
-                    return dbhelper.LineDataXWeekLabels(tankUniqueId, i).get(Integer.valueOf((int) value));
+                  return dbhelper.LineDataXWeekLabels(tankUniqueId, i).get(Integer.valueOf((int) value));
                 }
             });
             mChart.getAxisLeft().setDrawZeroLine(true);
             mChart.getAxisRight().setEnabled(false);
             mChart.getAxisLeft().setLabelCount(6, true);
-            mChart.getAxisLeft().setAxisMaxValue(2.5f);
+            mChart.getAxisLeft().setAxisMaxValue(dbhelper.getTankHeightByUid(tankUniqueId));
             mChart.getAxisLeft().setAxisMinValue(0.0f);
             mChart.invalidate();
         }

@@ -253,14 +253,15 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         fillableLoader = loaderBuilder.parentView(linearLayout)
                 .svgPath(Paths.DRINKING_BOTTLE)
                 .layoutParams(params)
-                .originalDimensions(970, 1790)
+                .originalDimensions(1200, 1678)
                 .strokeColor(Color.parseColor("#FFFFFF"))
                 .fillColor(Color.parseColor("#E3F6FA"))
                 .strokeDrawingDuration(0)
                 .strokeWidth(6)
                 .clippingTransform(new WavesClippingTransform())
                 .fillDuration(2000)
-                .percentage(Float.parseFloat(level.toString())>100?100:Float.parseFloat(level.toString()))
+                .percentage(95f)
+                //.percentage(Float.parseFloat(level.toString())>100?100:Float.parseFloat(level.toString()))
                 .build();
         fillableLoader.setSvgPath(Paths.DRINKING_BOTTLE);
         fillableLoader.start();

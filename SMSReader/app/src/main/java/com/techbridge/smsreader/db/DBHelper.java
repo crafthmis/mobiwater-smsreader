@@ -456,6 +456,29 @@ public class DBHelper extends SQLiteOpenHelper {
         return (meters == null || meters.equals("")) ? 0.00d : meters;
     }
 
+
+    public Float getTankHeightByUid(String uId) {
+        db = getReadableDatabase();
+        Float height = 0.0f;
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT "+TOP_HEIGHT+" FROM "+TABLE_TANK_SETTINGS + " WHERE "+TANK_UNIQUE_ID + "= " + StringUtils.trim(uId), null);
+            cursor.moveToFirst();
+            height = Float.parseFloat(cursor.getString(0));
+            if (cursor != null) {
+                cursor.close();
+            }
+        } catch (Exception e) {
+            Log.e("DB ERROR", e.toString());
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return (height == null || height.equals("")) ? 0.0f : height+0.5f;
+    }
+
     public ArrayList<String> getAllTankMsisdns() {
         db = getReadableDatabase();
         ArrayList<String> dataMsisdns = new ArrayList();
@@ -509,11 +532,14 @@ public class DBHelper extends SQLiteOpenHelper {
         try {
             String[] dayRange = getDayRange(dateInterval).split("-");
             cursor = db.query(TABLE_TANK, new String[]{TANK_LEVEL}, "tnk_uid = " + uId + " AND " + TANK_TIME + " BETWEEN " + dayRange[0] + " AND " + dayRange[1], null, null, null, "tank_time asc");
+           //cursor = db.query(TABLE_TANK, new String[]{TANK_LEVEL,TANK_TIME}, "tnk_uid = " + uId + " AND " + TANK_TIME + " BETWEEN " + dayRange[0] + " AND " + dayRange[1], null, null, null, "tank_time asc");
+
             cursor.moveToFirst();
             if (!cursor.isAfterLast()) {
                 do {
                     entries.add(new Entry((float) j, cursor.getFloat(0)));
-                    j++;
+                    //entries.add(new Entry(cursor.getFloat(1), cursor.getFloat(0)));
+                   j++;
                 } while (cursor.moveToNext());
             }
             LineDataSet dataSet = new LineDataSet(entries, TimeChart.TYPE);
@@ -660,6 +686,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    //Deprecated
     public GraphicalView drawGraph1(String uId, int dateInterval) {
         SimpleSeriesRenderer waterSeriesRenderer;
         XYMultipleSeriesDataset dataset;
@@ -750,7 +777,6 @@ public class DBHelper extends SQLiteOpenHelper {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-
         Calendar calendar2 = Calendar.getInstance();
         calendar2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         calendar2.setTimeZone(TimeZone.getTimeZone("GMT+3"));

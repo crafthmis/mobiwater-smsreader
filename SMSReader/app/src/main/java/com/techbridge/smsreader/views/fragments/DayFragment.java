@@ -22,6 +22,7 @@ import com.techbridge.smsreader.R;
 import com.techbridge.smsreader.db.DBHelper;
 import com.techbridge.smsreader.utils.Prefs;
 import com.techbridge.smsreader.utils.Utils;
+import com.techbridge.smsreader.utils.graphutils.HourAxisValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -103,10 +104,15 @@ public class DayFragment extends Fragment implements View.OnClickListener  {
                     return dbhelper.LineDataXLabels(tankUniqueId, i).get(Integer.valueOf((int) value));
                 }
             });
+            //HourAxisValueFormatter xAxisFormatter = new HourAxisValueFormatter(Long.parseLong(DBHelper.getDayRange(i).split("-")[0]));
+            //mChart.getXAxis().setValueFormatter(xAxisFormatter);
+            //mChart.getXAxis().setAxisMaxValue(Float.parseFloat(DBHelper.getDayRange(i).split("-")[1]));
+            //mChart.getXAxis().setAxisMinValue(Float.parseFloat(DBHelper.getDayRange(i).split("-")[0]));
             mChart.getAxisLeft().setDrawZeroLine(true);
             mChart.getAxisRight().setEnabled(false);
+            //mChart.getXAxis().setLabelCount(12);
             mChart.getAxisLeft().setLabelCount(6, true);
-            mChart.getAxisLeft().setAxisMaxValue(2.5f);
+            mChart.getAxisLeft().setAxisMaxValue(dbhelper.getTankHeightByUid(tankUniqueId));
             mChart.getAxisLeft().setAxisMinValue(0.0f);
             mChart.invalidate();
         }
@@ -173,7 +179,7 @@ public class DayFragment extends Fragment implements View.OnClickListener  {
                 return;
             case 0:
                 btnBack.setText("Today");
-                graphText.setText("Today");
+                graphText.setText(DBHelper.getDayRange(-2).split("-")[0]+" Today "+DBHelper.getDayRange(-2).split("-")[1]);
                 return;
             default:
                 return;
