@@ -88,7 +88,7 @@ public class CtrlsettingsActivity extends BaseActivity implements OnClickListene
             }
 
             public int getSwipeDirs(RecyclerView recyclerView, ViewHolder viewHolder) {
-                if (((SettingAdapter) recyclerView.getAdapter()).isPendingRemoval(viewHolder.getAdapterPosition())) {
+                if (((SettingAdapter)recyclerView.getAdapter()).isPendingRemoval(viewHolder.getAdapterPosition())) {
                     return 0;
                 }
                 return super.getSwipeDirs(recyclerView, viewHolder);

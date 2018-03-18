@@ -792,7 +792,7 @@ public class DBHelper extends SQLiteOpenHelper {
         calendar.setTimeZone(TimeZone.getTimeZone("GMT+3"));
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, mnth);
-        calendar.set(DAY_OF_MONTH, calendar.getActualMinimum(Calendar.MONTH));
+        calendar.set(DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
         calendar.set(Calendar.HOUR, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
@@ -801,7 +801,7 @@ public class DBHelper extends SQLiteOpenHelper {
         calendar2.setTimeZone(TimeZone.getTimeZone("GMT+3"));
         calendar2.set(Calendar.YEAR, year);
         calendar2.set(Calendar.MONTH, mnth);
-        calendar2.set(DAY_OF_MONTH, calendar.getActualMaximum(Calendar.MONTH));
+        calendar2.set(DAY_OF_MONTH, calendar2.getActualMaximum(Calendar.DAY_OF_MONTH));
         calendar2.set(Calendar.HOUR, 23);
         calendar2.set(Calendar.MINUTE, 59);
         calendar2.set(Calendar.SECOND, 59);

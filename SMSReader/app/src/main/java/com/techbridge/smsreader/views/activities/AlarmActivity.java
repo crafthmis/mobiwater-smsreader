@@ -144,9 +144,7 @@ public class AlarmActivity extends BaseActivity {
                     mAdapter.onDeleteItem(getDefaultItemCount());
 
                     // Display toast to confirm delete
-                    Toast.makeText(getApplicationContext(),
-                            "Deleted",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Deleted",Toast.LENGTH_SHORT).show();
 
                     // To check is there are saved reminders
                     // If there are no reminders display a message asking the user to create reminders

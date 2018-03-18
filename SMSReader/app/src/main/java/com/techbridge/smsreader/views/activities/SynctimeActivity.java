@@ -139,7 +139,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
         WheelView wheel = (WheelView) findViewById(id);
         wheel.setViewAdapter(new ArrayWheelAdapter(this.ctx, getYears().toArray(new String[getYears().size()])));
         wheel.setVisibleItems(2);
-        wheel.setCurrentItem(this.gCalendar.get(1));
+        wheel.setCurrentItem(this.gCalendar.get(Calendar.YEAR));
         wheel.addChangingListener(this.changedListener);
         wheel.addScrollingListener(this.scrolledListener);
         wheel.setCyclic(true);
@@ -149,7 +149,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
         WheelView wheel = (WheelView) findViewById(id);
         wheel.setViewAdapter(new ArrayWheelAdapter(this.ctx, getMonths().toArray(new String[getMonths().size()])));
         wheel.setVisibleItems(2);
-        wheel.setCurrentItem(this.gCalendar.get(2));
+        wheel.setCurrentItem(this.gCalendar.get(Calendar.MONTH));
         wheel.addChangingListener(this.changedListener);
         wheel.addScrollingListener(this.scrolledListener);
         wheel.setCyclic(true);
@@ -161,7 +161,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
         WheelView wheel = (WheelView) findViewById(id);
         wheel.setViewAdapter(new ArrayWheelAdapter(this.ctx, getDays(currYr, currMnth).toArray(new String[getDays(currYr, currMnth).size()])));
         wheel.setVisibleItems(2);
-        wheel.setCurrentItem(this.gCalendar.get(5) - 1);
+        wheel.setCurrentItem(this.gCalendar.get(Calendar.DAY_OF_MONTH) - 1);
         wheel.addChangingListener(this.changedListener);
         wheel.addScrollingListener(this.scrolledListener);
         wheel.setCyclic(true);
@@ -171,7 +171,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
         WheelView wheel = (WheelView) findViewById(id);
         wheel.setViewAdapter(new ArrayWheelAdapter(this.ctx, getHours().toArray(new String[getHours().size()])));
         wheel.setVisibleItems(2);
-        wheel.setCurrentItem(this.gCalendar.get(11));
+        wheel.setCurrentItem(this.gCalendar.get(Calendar.HOUR));
         wheel.addChangingListener(this.changedListener);
         wheel.setCyclic(true);
     }
@@ -180,7 +180,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
         WheelView wheel = (WheelView) findViewById(id);
         wheel.setViewAdapter(new ArrayWheelAdapter(this.ctx, getMinutes().toArray(new String[getMinutes().size()])));
         wheel.setVisibleItems(2);
-        wheel.setCurrentItem(this.gCalendar.get(12));
+        wheel.setCurrentItem(this.gCalendar.get(Calendar.MINUTE));
         wheel.addChangingListener(this.changedListener);
         wheel.setCyclic(true);
     }
@@ -189,7 +189,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
         WheelView wheel = (WheelView) findViewById(id);
         wheel.setViewAdapter(new ArrayWheelAdapter(this.ctx, getMinutes().toArray(new String[getMinutes().size()])));
         wheel.setVisibleItems(2);
-        wheel.setCurrentItem(this.gCalendar.get(13));
+        wheel.setCurrentItem(this.gCalendar.get(Calendar.SECOND));
         wheel.addChangingListener(this.changedListener);
         wheel.setCyclic(true);
     }
@@ -223,7 +223,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
     private ArrayList<String> getYears() {
         ArrayList<String> yrs = new ArrayList();
         for (int j = 2017; j <= 2060; j++) {
-            yrs.add(j + "");
+            yrs.add(j+"");
         }
         return yrs;
     }
@@ -231,7 +231,7 @@ public class SynctimeActivity extends BaseActivity implements OnClickListener {
     private ArrayList<String> getMinutes() {
         ArrayList<String> mins = new ArrayList();
         for (int j = 0; j < 60; j++) {
-            mins.add(StringUtils.leftPad(j + "", 2, "0"));
+            mins.add(StringUtils.leftPad(j+"",2,"0"));
         }
         return mins;
     }

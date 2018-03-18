@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.github.jorgecastillo.FillableLoader;
 import com.github.jorgecastillo.FillableLoaderBuilder;
+import com.github.jorgecastillo.clippingtransforms.PlainClippingTransform;
 import com.github.jorgecastillo.clippingtransforms.WavesClippingTransform;
 import com.master.permissionhelper.PermissionHelper;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -232,7 +233,7 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         drawerBuilder.withAccountHeader(headerResult);
         drawerBuilder.withActionBarDrawerToggleAnimated(true);
         IDrawerItem[] iDrawerItemArr = new IDrawerItem[4];
-        iDrawerItemArr[0] = (IDrawerItem) new PrimaryDrawerItem().withName("Add New Tank").withIcon(getResources().getDrawable(R.mipmap.ic_tank));;
+        iDrawerItemArr[0] = (IDrawerItem) new PrimaryDrawerItem().withName("Add New Tank").withIcon(getResources().getDrawable(R.mipmap.ic_tank));
         iDrawerItemArr[1] = (IDrawerItem) new PrimaryDrawerItem().withName("Water Use History").withIcon(getResources().getDrawable(R.mipmap.ic_graph));
         iDrawerItemArr[2] = (IDrawerItem) new PrimaryDrawerItem().withName("Water Logs").withIcon(getResources().getDrawable(R.mipmap.ic_data_log));
         iDrawerItemArr[3] = (IDrawerItem) ((ExpandableDrawerItem)((ExpandableDrawerItem) new ExpandableDrawerItem().withName("Settings")).withIdentifier(1)).withSubItems((IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(4)).withName("Controller Settings ").withIcon(getResources().getDrawable(R.mipmap.ic_ctrl_settings)), (IDrawerItem) ((SecondaryDrawerItem) ((SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(5)).withLevel(4).withIcon(getResources().getDrawable(R.mipmap.ic_reminders))).withName("Reminders")).withIcon(getResources().getDrawable(R.mipmap.ic_settings));;
@@ -246,6 +247,9 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
     }
 
     public void UpdateTank(Double level) {
+        if(level > 100d){
+           level = 100d;
+        }
         linearLayout = (LinearLayout) findViewById(R.id.tankView);
         linearLayout.removeAllViews();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -253,15 +257,15 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
         fillableLoader = loaderBuilder.parentView(linearLayout)
                 .svgPath(Paths.DRINKING_BOTTLE)
                 .layoutParams(params)
-                .originalDimensions(1200, 1678)
+                .originalDimensions(970,2257)
                 .strokeColor(Color.parseColor("#FFFFFF"))
                 .fillColor(Color.parseColor("#E3F6FA"))
                 .strokeDrawingDuration(0)
                 .strokeWidth(6)
                 .clippingTransform(new WavesClippingTransform())
                 .fillDuration(2000)
-                .percentage(95f)
-                //.percentage(Float.parseFloat(level.toString())>100?100:Float.parseFloat(level.toString()))
+                //.percentage(99f)
+                .percentage(Float.parseFloat(level.toString()))
                 .build();
         fillableLoader.setSvgPath(Paths.DRINKING_BOTTLE);
         fillableLoader.start();
@@ -270,7 +274,10 @@ public class DashboardActivity extends BaseActivity implements View.OnClickListe
 
 
     public String convertPercentage(Double percentage){
-        return (percentage==0)?"0":Integer.parseInt(StringUtils.substringBefore(String.valueOf(floor(percentage)),"."))>100?"100":StringUtils.substringBefore(String.valueOf(floor(percentage)),".")+"%";
+        if(percentage > 100d){
+            percentage = 100d;
+        }
+        return (percentage==0)?"0":Integer.parseInt(StringUtils.substringBefore(String.valueOf(floor(percentage)),"."))+"%";
     }
 
 

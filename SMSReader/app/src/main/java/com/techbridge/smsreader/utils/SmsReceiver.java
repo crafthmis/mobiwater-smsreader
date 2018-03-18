@@ -74,7 +74,10 @@ public class SmsReceiver extends BroadcastReceiver {
 
 
     public String convertPercentage(Double percentage){
-        return (percentage==0)?"0":Integer.parseInt(StringUtils.substringBefore(String.valueOf(floor(percentage)),"."))>100?"100":StringUtils.substringBefore(String.valueOf(floor(percentage)),".");
+        if(percentage > 100d){
+            percentage = 100d;
+        }
+        return (percentage==0)?"0":Integer.parseInt(StringUtils.substringBefore(String.valueOf(floor(percentage)),"."))+"";
     }
 
     private void sendNotification(Context context) {

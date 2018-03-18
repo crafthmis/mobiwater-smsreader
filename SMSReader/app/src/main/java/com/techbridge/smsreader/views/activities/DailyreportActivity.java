@@ -182,8 +182,16 @@ public class DailyreportActivity extends BaseActivity implements OnClickListener
                     Utils.showShortToast(this.ctx, "Enter Time").show();
                     return;
                 }
-                sendSMS(Prefs.readString(this.ctx, "settingPhone", ""), ("1234DR" + getWheel(R.id.p8).getCurrentItem() + "T" + txt1).trim());
+                if(getWheel(R.id.p8).getCurrentItem()<= 12)
+                    sendSMS(Prefs.readString(this.ctx, "settingPhone", ""), ("1234DR" + getWheel(R.id.p8).getCurrentItem() + "T" + txt1).trim());
+
+
+                else
+                    sendSMS(Prefs.readString(this.ctx, "settingPhone", ""), ("1234DR" + (getWheel(R.id.p8).getCurrentItem()-12) + "T" + txt1.replace(StringUtils.substringBefore(txt1,":"),(getWheel(R.id.p8).getCurrentItem()-12)+"")).trim());
+
                 this.text1.setText("");
+                this.text2.setText("");
+
                 return;
             case R.id.btn2:
                 Builder builder1 = new Builder(this.ctx);
